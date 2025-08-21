@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Skor NIHSS (Stroke Scale)</title>
+    <title>Kalkulator Skor NIHSS - RSUD KLU</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,7 +21,33 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        h1, h2 {
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+        }
+        .header img.logo {
+            width: 70px;
+            height: auto;
+        }
+        .header .title-container {
+            margin: 0 15px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .header p {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+        h2 {
             color: #0056b3;
             text-align: center;
         }
@@ -74,7 +100,7 @@
         #hasil h2 {
             margin-top: 0;
         }
-        #rekomendasi-detail { /* Gaya untuk detail rekomendasi */
+        #rekomendasi-detail {
             text-align: left;
             margin-top: 20px;
             padding: 15px;
@@ -100,7 +126,15 @@
 <body>
 
     <div class="container">
-        <h1>Kalkulator Skor NIHSS</h1>
+        <div class="header">
+            <img src="logo-klu.png" alt="Logo Lombok Utara" class="logo">
+            <div class="title-container">
+                <h1>UPTD BLUD RSUD KLU</h1>
+                <p>KALKULATOR NIHSS</p>
+            </div>
+            <img src="logo-rsud.png" alt="Logo RSUD KLU" class="logo">
+        </div>
+
         <p class="disclaimer"><strong>Penting:</strong> Kalkulator ini adalah alat bantu dan tidak menggantikan penilaian klinis oleh tenaga medis profesional.</p>
 
         <form id="nihss-form">
@@ -255,19 +289,17 @@
                 }
             });
 
-            // Menentukan interpretasi berdasarkan skor baru
             let interpretasi = '';
-            if (totalSkor < 5) { // Skor 0-4
+            if (totalSkor < 5) {
                 interpretasi = '<strong>Defisit neurologis ringan.</strong>';
-            } else if (totalSkor >= 5 && totalSkor <= 14) { // Skor 5-14
+            } else if (totalSkor >= 5 && totalSkor <= 14) {
                 interpretasi = '<strong>Defisit neurologis sedang / cukup berat.</strong>';
-            } else if (totalSkor >= 15 && totalSkor <= 24) { // Skor 15-24
+            } else if (totalSkor >= 15 && totalSkor <= 24) {
                 interpretasi = '<strong>Defisit neurologis berat.</strong>';
-            } else { // Skor >= 25
+            } else {
                 interpretasi = '<strong>Defisit neurologis sangat berat.</strong>';
             }
             
-            // Konten untuk Rekomendasi, Manajemen, dan Tindakan Kritis
             const detailRekomendasi = `
                 <h3>SARAN (ADVICE)</h3>
                 <ul>
@@ -300,7 +332,6 @@
             `;
 
 
-            // Menampilkan hasil
             const hasilDiv = document.getElementById('hasil');
             document.getElementById('total-skor').innerHTML = `<strong>Total Skor NIHSS: ${totalSkor}</strong>`;
             document.getElementById('interpretasi').innerHTML = `Interpretasi: ${interpretasi}`;
@@ -308,7 +339,6 @@
             
             hasilDiv.style.display = 'block';
 
-            // Gulir ke bawah untuk melihat hasil
             hasilDiv.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
