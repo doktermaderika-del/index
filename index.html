@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Skor NIHSS (Stroke Scale)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+            text-align: center;
+        }
+        .item {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .item h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .item p.instruction {
+            font-style: italic;
+            color: #555;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        .item label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .tombol-hitung {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .tombol-hitung:hover {
+            background-color: #0056b3;
+        }
+        #hasil {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #hasil h2 {
+            margin-top: 0;
+        }
+        #rekomendasi-detail { /* Gaya untuk detail rekomendasi */
+            text-align: left;
+            margin-top: 20px;
+            padding: 15px;
+            border-top: 2px solid #0056b3;
+        }
+        #rekomendasi-detail h3 {
+            color: #0056b3;
+        }
+        #rekomendasi-detail ul {
+            padding-left: 20px;
+        }
+        #rekomendasi-detail li {
+            margin-bottom: 10px;
+        }
+        .disclaimer {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Kalkulator Skor NIHSS</h1>
+        <p class="disclaimer"><strong>Penting:</strong> Kalkulator ini adalah alat bantu dan tidak menggantikan penilaian klinis oleh tenaga medis profesional.</p>
+
+        <form id="nihss-form">
+            <div class="item">
+                <h3>1a. Tingkat Kesadaran</h3>
+                <label><input type="radio" name="item_1a" value="0" required> Sadar penuh</label>
+                <label><input type="radio" name="item_1a" value="1"> Mengantuk, tapi dapat dibangunkan</label>
+                <label><input type="radio" name="item_1a" value="2"> Stupor, butuh rangsang kuat/nyeri</label>
+                <label><input type="radio" name="item_1a" value="3"> Koma, tidak berespons</label>
+            </div>
+
+            <div class="item">
+                <h3>1b. Pertanyaan Orientasi (Bulan & Usia)</h3>
+                <label><input type="radio" name="item_1b" value="0" required> Menjawab 2 pertanyaan benar</label>
+                <label><input type="radio" name="item_1b" value="1"> Menjawab 1 pertanyaan benar</label>
+                <label><input type="radio" name="item_1b" value="2"> Tidak menjawab benar sama sekali</label>
+            </div>
+
+            <div class="item">
+                <h3>1c. Perintah (Buka-Tutup Mata & Genggam)</h3>
+                <label><input type="radio" name="item_1c" value="0" required> Melakukan 2 perintah benar</label>
+                <label><input type="radio" name="item_1c" value="1"> Melakukan 1 perintah benar</label>
+                <label><input type="radio" name="item_1c" value="2"> Tidak melakukan perintah dengan benar</label>
+            </div>
+
+            <div class="item">
+                <h3>2. Gerakan Mata (Best Gaze)</h3>
+                <label><input type="radio" name="item_2" value="0" required> Normal</label>
+                <label><input type="radio" name="item_2" value="1"> Paresis lirikan parsial</label>
+                <label><input type="radio" name="item_2" value="2"> Deviasi lirikan tonik atau palsi total</label>
+            </div>
+
+            <div class="item">
+                <h3>3. Lapang Pandang</h3>
+                <label><input type="radio" name="item_3" value="0" required> Tidak ada gangguan</label>
+                <label><input type="radio" name="item_3" value="1"> Hemianopsia parsial</label>
+                <label><input type="radio" name="item_3" value="2"> Hemianopsia komplit</label>
+                <label><input type="radio" name="item_3" value="3"> Hemianopsia bilateral (buta)</label>
+            </div>
+
+            <div class="item">
+                <h3>4. Paresis Wajah</h3>
+                <label><input type="radio" name="item_4" value="0" required> Normal</label>
+                <label><input type="radio" name="item_4" value="1"> Minor (lipatan nasolabial datar)</label>
+                <label><input type="radio" name="item_4" value="2"> Parsial (kelemahan total wajah bawah)</label>
+                <label><input type="radio" name="item_4" value="3"> Komplit (tidak ada gerakan di satu atau kedua sisi)</label>
+            </div>
+
+            <div class="item">
+                <h3>5a. Motorik Lengan Kiri</h3>
+                <label><input type="radio" name="item_5a" value="0" required> Tidak melayang, bertahan 10 detik</label>
+                <label><input type="radio" name="item_5a" value="1"> Melayang, turun sebelum 10 detik</label>
+                <label><input type="radio" name="item_5a" value="2"> Ada usaha melawan gravitasi</label>
+                <label><input type="radio" name="item_5a" value="3"> Tidak ada usaha melawan gravitasi</label>
+                <label><input type="radio" name="item_5a" value="4"> Tidak ada gerakan</label>
+            </div>
+            <div class="item">
+                <h3>5b. Motorik Lengan Kanan</h3>
+                <label><input type="radio" name="item_5b" value="0" required> Tidak melayang, bertahan 10 detik</label>
+                <label><input type="radio" name="item_5b" value="1"> Melayang, turun sebelum 10 detik</label>
+                <label><input type="radio" name="item_5b" value="2"> Ada usaha melawan gravitasi</label>
+                <label><input type="radio" name="item_5b" value="3"> Tidak ada usaha melawan gravitasi</label>
+                <label><input type="radio" name="item_5b" value="4"> Tidak ada gerakan</label>
+            </div>
+
+            <div class="item">
+                <h3>6a. Motorik Tungkai Kiri</h3>
+                <label><input type="radio" name="item_6a" value="0" required> Tidak melayang, bertahan 5 detik</label>
+                <label><input type="radio" name="item_6a" value="1"> Melayang, turun sebelum 5 detik</label>
+                <label><input type="radio" name="item_6a" value="2"> Ada usaha melawan gravitasi</label>
+                <label><input type="radio" name="item_6a" value="3"> Tidak ada usaha melawan gravitasi</label>
+                <label><input type="radio" name="item_6a" value="4"> Tidak ada gerakan</label>
+            </div>
+            <div class="item">
+                <h3>6b. Motorik Tungkai Kanan</h3>
+                <label><input type="radio" name="item_6b" value="0" required> Tidak melayang, bertahan 5 detik</label>
+                <label><input type="radio" name="item_6b" value="1"> Melayang, turun sebelum 5 detik</label>
+                <label><input type="radio" name="item_6b" value="2"> Ada usaha melawan gravitasi</label>
+                <label><input type="radio" name="item_6b" value="3"> Tidak ada usaha melawan gravitasi</label>
+                <label><input type="radio" name="item_6b" value="4"> Tidak ada gerakan</label>
+            </div>
+
+            <div class="item">
+                <h3>7. Ataksia Tungkai</h3>
+                <p class="instruction">Gunakan tes unjuk jari-hidung (finger-nose test) dan tumit-lutut (heel-shin test).</p>
+                <label><input type="radio" name="item_7" value="0" required> Tidak ada</label>
+                <label><input type="radio" name="item_7" value="1"> Terdapat pada satu tungkai</label>
+                <label><input type="radio" name="item_7" value="2"> Terdapat pada dua tungkai</label>
+            </div>
+
+            <div class="item">
+                <h3>8. Sensorik</h3>
+                <p class="instruction">Lakukan tes rangsang sensorik (tusukan jarum) di seluruh tubuh (wajah, lengan, badan, tungkai).</p>
+                <label><input type="radio" name="item_8" value="0" required> Normal</label>
+                <label><input type="radio" name="item_8" value="1"> Gangguan ringan hingga sedang, atau jika pasien afasia.</label>
+                <label><input type="radio" name="item_8" value="2"> Gangguan sensorik berat, atau jika pasien stupor atau koma.</label>
+            </div>
+
+            <div class="item">
+                <h3>9. Kemampuan Bahasa Terbaik (Afasia)</h3>
+                <p class="instruction">Anjurkan pasien untuk menjelaskan suatu gambar atau membaca tulisan. Jika pasien buta, minta untuk mendeskripsikan suatu benda yang dipegang.</p>
+                <label><input type="radio" name="item_9" value="0" required> Normal, tidak ada afasia</label>
+                <label><input type="radio" name="item_9" value="1"> Afasia ringan hingga sedang</label>
+                <label><input type="radio" name="item_9" value="2"> Afasia berat</label>
+                <label><input type="radio" name="item_9" value="3"> Bisu, afasia global</label>
+            </div>
+
+            <div class="item">
+                <h3>10. Disartria (Bicara Pelo)</h3>
+                <label><input type="radio" name="item_10" value="0" required> Artikulasi normal</label>
+                <label><input type="radio" name="item_10" value="1"> Pelo ringan hingga sedang</label>
+                <label><input type="radio" name="item_10" value="2"> Sangat pelo atau tidak dapat dimengerti</label>
+            </div>
+
+            <div class="item">
+                <h3>11. Inatensi (Pengabaian)</h3>
+                <label><input type="radio" name="item_11" value="0" required> Tidak ada</label>
+                <label><input type="radio" name="item_11" value="1"> Inatensi visual, taktil, auditori, atau spasial parsial</label>
+                <label><input type="radio" name="item_11" value="2"> Inatensi berat atau pada lebih dari satu modalitas</label>
+            </div>
+
+            <button type="button" class="tombol-hitung" onclick="hitungNIHSS()">HITUNG TOTAL SKOR</button>
+        </form>
+
+        <div id="hasil" style="display: none;">
+            <h2>Hasil Penilaian</h2>
+            <p id="total-skor" style="font-size: 1.5em;"></p>
+            <p id="interpretasi" style="font-size: 1.2em;"></p>
+            <div id="rekomendasi-detail"></div>
+        </div>
+    </div>
+
+    <script>
+        function hitungNIHSS() {
+            const form = document.getElementById('nihss-form');
+            if (!form.checkValidity()) {
+                alert("Harap isi semua item penilaian sebelum menghitung.");
+                return;
+            }
+
+            let totalSkor = 0;
+            const namaItem = [
+                'item_1a', 'item_1b', 'item_1c', 'item_2', 'item_3', 'item_4',
+                'item_5a', 'item_5b', 'item_6a', 'item_6b', 'item_7', 'item_8',
+                'item_9', 'item_10', 'item_11'
+            ];
+
+            namaItem.forEach(nama => {
+                const elemenTerpilih = document.querySelector(`input[name="${nama}"]:checked`);
+                if (elemenTerpilih) {
+                    totalSkor += parseInt(elemenTerpilih.value, 10);
+                }
+            });
+
+            // Menentukan interpretasi berdasarkan skor baru
+            let interpretasi = '';
+            if (totalSkor < 5) { // Skor 0-4
+                interpretasi = '<strong>Defisit neurologis ringan.</strong>';
+            } else if (totalSkor >= 5 && totalSkor <= 14) { // Skor 5-14
+                interpretasi = '<strong>Defisit neurologis sedang / cukup berat.</strong>';
+            } else if (totalSkor >= 15 && totalSkor <= 24) { // Skor 15-24
+                interpretasi = '<strong>Defisit neurologis berat.</strong>';
+            } else { // Skor >= 25
+                interpretasi = '<strong>Defisit neurologis sangat berat.</strong>';
+            }
+            
+            // Konten untuk Rekomendasi, Manajemen, dan Tindakan Kritis
+            const detailRekomendasi = `
+                <h3>SARAN (ADVICE)</h3>
+                <ul>
+                    <li>Segera konsultasikan dengan Neurologi (jika tersedia) untuk semua pasien dengan stroke iskemik.</li>
+                    <li>Evaluasi apakah pasien merupakan kandidat potensial untuk menerima trombolisis intravena (tPA).</li>
+                    <li>Pertimbangkan pencitraan lebih lanjut termasuk CT, CT angiografi, dan MRI/MRA.</li>
+                </ul>
+                <h3>MANAJEMEN (MANAGEMENT)</h3>
+                <p>Pada pasien dengan gejala yang mengarah pada stroke iskemik:</p>
+                <ul>
+                    <li>Konsultasi dengan Neurologi.</li>
+                    <li>Tentukan waktu onset gejala stroke (atau waktu terakhir pasien merasa atau terlihat normal).</li>
+                    <li>Lakukan CT scan kepala segera (stat) untuk mengevaluasi kemungkinan stroke hemoragik.</li>
+                    <li>Dalam kondisi yang tepat dan setelah berkonsultasi dengan neurologi serta pasien, pertimbangkan trombolisis IV untuk stroke iskemik pada pasien tanpa kontraindikasi.</li>
+                    <li>Selalu pertimbangkan <i>stroke mimics</i> (kondisi yang meniru stroke) dalam diagnosis banding, terutama pada kasus dengan gambaran atipikal (usia, faktor risiko, riwayat, pemeriksaan fisik), termasuk:
+                        <ul>
+                            <li>Kambuhnya stroke lama akibat stres metabolik atau infeksi.</li>
+                            <li>Paralisis Todd pasca kejang.</li>
+                            <li>Migrain kompleks.</li>
+                            <li>Kejang semu (<i>pseudoseizure</i>), gangguan konversi.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>TINDAKAN KRITIS (CRITICAL ACTIONS)</h3>
+                <ul>
+                    <li>Skor NIHSS secara umum dapat memprediksi luaran klinis, namun penting untuk menyadari bahwa setiap kasus dapat bervariasi dan keputusan manajemen harus dibuat melalui konsultasi dengan pasien jika memungkinkan.</li>
+                    <li>Pasien dengan skor < 4 memiliki kemungkinan besar untuk mendapatkan luaran klinis yang baik.</li>
+                    <li>Jika memungkinkan, pasien dengan stroke akut harus dirujuk ke pusat stroke (<i>stroke center</i>) untuk evaluasi dan pengobatan awal, karena perawatan holistik (optimalisasi medis, inisiasi awal Fisioterapi dan Terapi Okupasi, edukasi pasien dan keluarga, serta perencanaan pulang) terbukti meningkatkan luaran klinis.</li>
+                </ul>
+            `;
+
+
+            // Menampilkan hasil
+            const hasilDiv = document.getElementById('hasil');
+            document.getElementById('total-skor').innerHTML = `<strong>Total Skor NIHSS: ${totalSkor}</strong>`;
+            document.getElementById('interpretasi').innerHTML = `Interpretasi: ${interpretasi}`;
+            document.getElementById('rekomendasi-detail').innerHTML = detailRekomendasi;
+            
+            hasilDiv.style.display = 'block';
+
+            // Gulir ke bawah untuk melihat hasil
+            hasilDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
