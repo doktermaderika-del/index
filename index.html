@@ -65,7 +65,6 @@
             margin-top: 10px;
             border-left: 3px solid #0056b3;
         }
-        /* -- DIUBAH: Gaya untuk gambar di petunjuk -- */
         .instruction-images {
             display: flex;
             justify-content: space-around;
@@ -168,11 +167,11 @@
             </div>
 
             <div class="item">
-                <h3>2. Gerakan Mata Terbaik</h3>
+                <h3>2. Best Gaze (Gerakan Ekstraokular Horizontal)</h3>
                  <details>
                     <summary>Lihat Petunjuk Pemeriksaan</summary>
                     <p class="instruction">
-                        Hanya gerakan mata horizontal yang diuji. Jika ada deviasi mata yang bisa diatasi oleh aktivitas volunter, skor 1. Pasien dengan trauma okular atau kebutaan harus diuji dengan gerakan refleks.
+                        Hanya gerakan mata horizontal yang diuji. Pasien dengan trauma okular, kebutaan, atau tidak sadar diuji dengan gerakan reflek okulosefalik (oculocephalic maneuver). Jika ada deviasi mata yang bisa diatasi oleh aktivitas volunter, skor 1.
                     </p>
                 </details>
                 <label><input type="radio" name="item_2" value="0" required> (0) Normal</label>
@@ -213,7 +212,7 @@
                 <details>
                     <summary>Lihat Petunjuk Pemeriksaan</summary>
                     <p class="instruction">
-                        Posisikan lengan: ekstensi 90° (jika duduk) atau 45° (jika berbaring). *Drift* dinilai jika lengan jatuh sebelum 10 detik. Uji setiap lengan bergantian, dimulai dari yang tidak lumpuh.
+                        Posisikan lengan: ekstensi 90° (jika duduk) atau 45° (jika berbaring). <strong>(*Drift* adalah kondisi di mana lengan tidak bisa ditahan pada posisinya dan perlahan-lahan turun karena kelemahan)</strong>. *Drift* dinilai jika lengan jatuh sebelum 10 detik. Uji setiap lengan bergantian, dimulai dari yang tidak lumpuh.
                     </p>
                 </details>
                 <label><input type="radio" name="item_5a" value="0" required> (0) Tidak ada *drift*; lengan bertahan 90° (atau 45°) selama 10 detik.</label>
@@ -226,8 +225,8 @@
                 <h3>5b. Motorik Lengan Kanan</h3>
                 <details>
                     <summary>Lihat Petunjuk Pemeriksaan</summary>
-                    <p class="instruction">
-                        Posisikan lengan: ekstensi 90° (jika duduk) atau 45° (jika berbaring). *Drift* dinilai jika lengan jatuh sebelum 10 detik. Uji setiap lengan bergantian, dimulai dari yang tidak lumpuh.
+                     <p class="instruction">
+                        Posisikan lengan: ekstensi 90° (jika duduk) atau 45° (jika berbaring). <strong>(*Drift* adalah kondisi di mana lengan tidak bisa ditahan pada posisinya dan perlahan-lahan turun karena kelemahan)</strong>. *Drift* dinilai jika lengan jatuh sebelum 10 detik. Uji setiap lengan bergantian, dimulai dari yang tidak lumpuh.
                     </p>
                 </details>
                 <label><input type="radio" name="item_5b" value="0" required> (0) Tidak ada *drift*; lengan bertahan 90° (atau 45°) selama 10 detik.</label>
@@ -241,8 +240,8 @@
                 <h3>6a. Motorik Tungkai Kiri</h3>
                  <details>
                     <summary>Lihat Petunjuk Pemeriksaan</summary>
-                    <p class="instruction">
-                        Posisikan tungkai: tahan pada sudut 30° (selalu diuji berbaring). *Drift* dinilai jika tungkai jatuh sebelum 5 detik. Uji setiap tungkai bergantian, dimulai dari yang tidak lumpuh.
+                     <p class="instruction">
+                        Posisikan tungkai: tahan pada sudut 30° (selalu diuji berbaring). <strong>(*Drift* adalah kondisi di mana tungkai tidak bisa ditahan pada posisinya dan perlahan-lahan turun karena kelemahan)</strong>. *Drift* dinilai jika tungkai jatuh sebelum 5 detik. Uji setiap tungkai bergantian, dimulai dari yang tidak lumpuh.
                     </p>
                 </details>
                 <label><input type="radio" name="item_6a" value="0" required> (0) Tidak ada *drift*; tungkai bertahan 30° selama 5 detik.</label>
@@ -255,8 +254,8 @@
                 <h3>6b. Motorik Tungkai Kanan</h3>
                  <details>
                     <summary>Lihat Petunjuk Pemeriksaan</summary>
-                    <p class="instruction">
-                        Posisikan tungkai: tahan pada sudut 30° (selalu diuji berbaring). *Drift* dinilai jika tungkai jatuh sebelum 5 detik. Uji setiap tungkai bergantian, dimulai dari yang tidak lumpuh.
+                     <p class="instruction">
+                        Posisikan tungkai: tahan pada sudut 30° (selalu diuji berbaring). <strong>(*Drift* adalah kondisi di mana tungkai tidak bisa ditahan pada posisinya dan perlahan-lahan turun karena kelemahan)</strong>. *Drift* dinilai jika tungkai jatuh sebelum 5 detik. Uji setiap tungkai bergantian, dimulai dari yang tidak lumpuh.
                     </p>
                 </details>
                 <label><input type="radio" name="item_6b" value="0" required> (0) Tidak ada *drift*; tungkai bertahan 30° selama 5 detik.</label>
@@ -407,7 +406,7 @@
                 <ul>
                     <li>Skor NIHSS secara umum dapat memprediksi luaran klinis, namun penting untuk menyadari bahwa setiap kasus dapat bervariasi dan keputusan manajemen harus dibuat melalui konsultasi dengan pasien jika memungkinkan.</li>
                     <li>Pasien dengan skor < 4 memiliki kemungkinan besar untuk mendapatkan luaran klinis yang baik.</li>
-                    <li>Jika memungkinkan, pasien dengan stroke akut harus dirujuk ke pusat stroke (<i>stroke center</i>) untuk evaluasi dan pengobatan awal, karena perawatan holistik (optimalisasi medis, inisiasi awal Fisioterapi dan Terapi Okupasi, edukasi pasien dan keluarga, serta perencanaan pulang) terbukti meningkatkan luaran klinis.</li>
+                    <li>Jika memungkinkan, pasien dengan stroke akut harus dirujuk ke pusat stroke (<i>stroke center</i>) untuk evaluasi dan pengobatan awal, karena perawatan holistik (optimalisasi medis, inisiiasi awal Fisioterapi dan Terapi Okupasi, edukasi pasien dan keluarga, serta perencanaan pulang) terbukti meningkatkan luaran klinis.</li>
                 </ul>
             `;
 
