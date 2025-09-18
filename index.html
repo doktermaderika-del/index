@@ -46,13 +46,38 @@
             margin-top: 0;
             color: #333;
         }
-        .item p.instruction {
+        details {
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #0056b3;
+            outline: none;
+        }
+        .instruction {
             font-style: italic;
             color: #555;
             background-color: #e9ecef;
             padding: 10px;
             border-radius: 4px;
-            margin-top: 5px;
+            margin-top: 10px;
+            border-left: 3px solid #0056b3;
+        }
+        /* -- DIUBAH: Gaya untuk gambar di petunjuk -- */
+        .instruction-images {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .instruction-images img {
+            max-width: 48%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 5px;
         }
         .item label {
             display: block;
@@ -70,9 +95,6 @@
             font-size: 18px;
             cursor: pointer;
             margin-top: 20px;
-        }
-        .tombol-hitung:hover {
-            background-color: #0056b3;
         }
         #hasil {
             margin-top: 25px;
@@ -93,18 +115,6 @@
         #rekomendasi-detail h3 {
             color: #0056b3;
         }
-        #rekomendasi-detail ul {
-            padding-left: 20px;
-        }
-        #rekomendasi-detail li {
-            margin-bottom: 10px;
-        }
-        .disclaimer {
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -119,119 +129,211 @@
         <form id="nihss-form">
             <div class="item">
                 <h3>1a. Tingkat Kesadaran</h3>
-                <label><input type="radio" name="item_1a" value="0" required> (0) Sadar penuh</label>
-                <label><input type="radio" name="item_1a" value="1"> (1) Mengantuk, tapi dapat dibangunkan</label>
-                <label><input type="radio" name="item_1a" value="2"> (2) Stupor, butuh rangsang kuat/nyeri</label>
-                <label><input type="radio" name="item_1a" value="3"> (3) Koma, tidak berespons</label>
+                <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Pemeriksa harus memilih respons jika evaluasi penuh terhalang oleh selang endotrakeal, hambatan bahasa, atau perban. Skor 3 hanya diberikan jika pasien tidak melakukan gerakan sama sekali (selain postur refleks) terhadap rangsangan nyeri.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_1a" value="0" required> (0) Sadar penuh; responsif.</label>
+                <label><input type="radio" name="item_1a" value="1"> (1) Tidak sadar penuh; tapi dapat dibangunkan dengan stimulasi ringan.</label>
+                <label><input type="radio" name="item_1a" value="2"> (2) Tidak sadar penuh; perlu stimulasi berulang atau rangsang kuat/nyeri untuk bergerak.</label>
+                <label><input type="radio" name="item_1a" value="3"> (3) Hanya merespons dengan refleks motorik atau otonom; atau tidak responsif sama sekali.</label>
             </div>
 
             <div class="item">
-                <h3>1b. Pertanyaan Orientasi (Bulan & Usia)</h3>
+                <h3>1b. Pertanyaan Orientasi</h3>
+                <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Tanyakan bulan saat ini dan usia pasien. Jawaban harus benar, tidak ada nilai parsial. Pasien afasia atau stupor yang tidak memahami pertanyaan diberi skor 2. Pasien yang tidak dapat berbicara karena intubasi atau masalah non-afasia lainnya diberi skor 1.
+                    </p>
+                </details>
                 <label><input type="radio" name="item_1b" value="0" required> (0) Menjawab 2 pertanyaan benar</label>
                 <label><input type="radio" name="item_1b" value="1"> (1) Menjawab 1 pertanyaan benar</label>
                 <label><input type="radio" name="item_1b" value="2"> (2) Tidak menjawab benar sama sekali</label>
             </div>
 
             <div class="item">
-                <h3>1c. Perintah (Buka-Tutup Mata & Genggam)</h3>
+                <h3>1c. Perintah</h3>
+                 <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Minta pasien membuka dan menutup mata, lalu menggenggam dan melepas tangan yang tidak lumpuh. Gunakan perintah satu langkah lain jika tangan tidak bisa digunakan. Beri nilai jika ada usaha jelas meskipun tidak tuntas karena kelemahan. Jika tidak merespons, peragakan perintahnya.
+                    </p>
+                </details>
                 <label><input type="radio" name="item_1c" value="0" required> (0) Melakukan 2 perintah benar</label>
                 <label><input type="radio" name="item_1c" value="1"> (1) Melakukan 1 perintah benar</label>
                 <label><input type="radio" name="item_1c" value="2"> (2) Tidak melakukan perintah dengan benar</label>
             </div>
 
             <div class="item">
-                <h3>2. Gerakan Mata (Best Gaze)</h3>
+                <h3>2. Gerakan Mata Terbaik</h3>
+                 <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Hanya gerakan mata horizontal yang diuji. Jika ada deviasi mata yang bisa diatasi oleh aktivitas volunter, skor 1. Pasien dengan trauma okular atau kebutaan harus diuji dengan gerakan refleks.
+                    </p>
+                </details>
                 <label><input type="radio" name="item_2" value="0" required> (0) Normal</label>
-                <label><input type="radio" name="item_2" value="1"> (1) Paresis lirikan parsial</label>
-                <label><input type="radio" name="item_2" value="2"> (2) Deviasi lirikan tonik atau palsi total</label>
+                <label><input type="radio" name="item_2" value="1"> (1) Paresis lirikan parsial; lirikan abnormal di satu/dua mata.</label>
+                <label><input type="radio" name="item_2" value="2"> (2) Deviasi paksa, atau paresis lirikan total yang tidak bisa diatasi manuver oculocephalic.</label>
             </div>
 
             <div class="item">
                 <h3>3. Lapang Pandang</h3>
-                <label><input type="radio" name="item_3" value="0" required> (0) Tidak ada gangguan</label>
-                <label><input type="radio" name="item_3" value="1"> (1) Hemianopsia parsial</label>
-                <label><input type="radio" name="item_3" value="2"> (2) Hemianopsia komplit</label>
-                <label><input type="radio" name="item_3" value="3"> (3) Hemianopsia bilateral (buta)</label>
+                 <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Uji lapang pandang (kuadran atas dan bawah) dengan konfrontasi (hitung jari atau ancaman visual). Jika ada kebutaan unilateral, uji lapang pandang pada mata yang sehat. Skor 1 hanya jika ada asimetri yang jelas, termasuk kuadranopia. Jika buta karena sebab apapun, skor 3. Jika ada ekstingsi, pasien mendapat skor 1 dan hasilnya digunakan untuk item 11.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_3" value="0" required> (0) Tidak ada gangguan penglihatan.</label>
+                <label><input type="radio" name="item_3" value="1"> (1) Hemianopia parsial.</label>
+                <label><input type="radio" name="item_3" value="2"> (2) Hemianopia komplit.</label>
+                <label><input type="radio" name="item_3" value="3"> (3) Hemianopia bilateral (buta).</label>
             </div>
 
             <div class="item">
                 <h3>4. Paresis Wajah</h3>
-                <label><input type="radio" name="item_4" value="0" required> (0) Normal</label>
-                <label><input type="radio" name="item_4" value="1"> (1) Minor (lipatan nasolabial datar)</label>
-                <label><input type="radio" name="item_4" value="2"> (2) Parsial (kelemahan total wajah bawah)</label>
-                <label><input type="radio" name="item_4" value="3"> (3) Komplit (tidak ada gerakan di satu atau kedua sisi)</label>
+                 <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Minta pasien menunjukkan gigi, mengangkat alis, dan menutup mata. Pada pasien yang kurang responsif, nilai kesimetrisan meringis terhadap rangsang nyeri.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_4" value="0" required> (0) Gerakan simetris normal.</label>
+                <label><input type="radio" name="item_4" value="1"> (1) Paralisis minor (lipatan nasolabial datar, asimetri saat tersenyum).</label>
+                <label><input type="radio" name="item_4" value="2"> (2) Paralisis parsial (paralisis total atau hampir total wajah bagian bawah).</label>
+                <label><input type="radio" name="item_4" value="3"> (3) Paralisis komplit satu atau dua sisi (tidak ada gerakan di wajah atas dan bawah).</label>
             </div>
 
             <div class="item">
                 <h3>5a. Motorik Lengan Kiri</h3>
-                <label><input type="radio" name="item_5a" value="0" required> (0) Mampu mengangkat lengan minimal 10 detik</label>
-                <label><input type="radio" name="item_5a" value="1"> (1) Lengan terjatuh sebelum 10 detik</label>
-                <label><input type="radio" name="item_5a" value="2"> (2) Tidak mampu mengangkat secara penuh 90° atau 45°</label>
-                <label><input type="radio" name="item_5a" value="3"> (3) Tidak mampu mengangkat hanya bergeser</label>
-                <label><input type="radio" name="item_5a" value="4"> (4) Tidak ada Gerakan</label>
+                <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Posisikan lengan: ekstensi 90° (jika duduk) atau 45° (jika berbaring). *Drift* dinilai jika lengan jatuh sebelum 10 detik. Uji setiap lengan bergantian, dimulai dari yang tidak lumpuh.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_5a" value="0" required> (0) Tidak ada *drift*; lengan bertahan 90° (atau 45°) selama 10 detik.</label>
+                <label><input type="radio" name="item_5a" value="1"> (1) *Drift*; lengan turun sebelum 10 detik tapi tidak menyentuh ranjang.</label>
+                <label><input type="radio" name="item_5a" value="2"> (2) Ada usaha melawan gravitasi; lengan turun ke ranjang tapi ada sedikit tahanan.</label>
+                <label><input type="radio" name="item_5a" value="3"> (3) Tidak ada usaha melawan gravitasi; lengan langsung jatuh.</label>
+                <label><input type="radio" name="item_5a" value="4"> (4) Tidak ada gerakan.</label>
             </div>
-            <div class="item">
+             <div class="item">
                 <h3>5b. Motorik Lengan Kanan</h3>
-                <label><input type="radio" name="item_5b" value="0" required> (0) Mampu mengangkat lengan minimal 10 detik</label>
-                <label><input type="radio" name="item_5b" value="1"> (1) Lengan terjatuh sebelum 10 detik</label>
-                <label><input type="radio" name="item_5b" value="2"> (2) Tidak mampu mengangkat secara penuh 90° atau 45°</label>
-                <label><input type="radio" name="item_5b" value="3"> (3) Tidak mampu mengangkat hanya bergeser</label>
-                <label><input type="radio" name="item_5b" value="4"> (4) Tidak ada Gerakan</label>
+                <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Posisikan lengan: ekstensi 90° (jika duduk) atau 45° (jika berbaring). *Drift* dinilai jika lengan jatuh sebelum 10 detik. Uji setiap lengan bergantian, dimulai dari yang tidak lumpuh.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_5b" value="0" required> (0) Tidak ada *drift*; lengan bertahan 90° (atau 45°) selama 10 detik.</label>
+                <label><input type="radio" name="item_5b" value="1"> (1) *Drift*; lengan turun sebelum 10 detik tapi tidak menyentuh ranjang.</label>
+                <label><input type="radio" name="item_5b" value="2"> (2) Ada usaha melawan gravitasi; lengan turun ke ranjang tapi ada sedikit tahanan.</label>
+                <label><input type="radio" name="item_5b" value="3"> (3) Tidak ada usaha melawan gravitasi; lengan langsung jatuh.</label>
+                <label><input type="radio" name="item_5b" value="4"> (4) Tidak ada gerakan.</label>
             </div>
 
             <div class="item">
                 <h3>6a. Motorik Tungkai Kiri</h3>
-                <label><input type="radio" name="item_6a" value="0" required> (0) Mampu mengangkat tungkai 30° minimal 5 detik</label>
-                <label><input type="radio" name="item_6a" value="1"> (1) Tungkai jatuh ketempat tidur pada detik ke 5 secara perlahan</label>
-                <label><input type="radio" name="item_6a" value="2"> (2) Tungkai jatuh sebelum 5 detik tapi ada usaha melawan gravitasi</label>
-                <label><input type="radio" name="item_6a" value="3"> (3) Tidak mampu melawan gravitasi</label>
-                <label><input type="radio" name="item_6a" value="4"> (4) Tidak ada gerakan</label>
+                 <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Posisikan tungkai: tahan pada sudut 30° (selalu diuji berbaring). *Drift* dinilai jika tungkai jatuh sebelum 5 detik. Uji setiap tungkai bergantian, dimulai dari yang tidak lumpuh.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_6a" value="0" required> (0) Tidak ada *drift*; tungkai bertahan 30° selama 5 detik.</label>
+                <label><input type="radio" name="item_6a" value="1"> (1) *Drift*; tungkai jatuh di akhir 5 detik tapi tidak menyentuh ranjang.</label>
+                <label><input type="radio" name="item_6a" value="2"> (2) Ada usaha melawan gravitasi; tungkai jatuh sebelum 5 detik tapi ada sedikit tahanan.</label>
+                <label><input type="radio" name="item_6a" value="3"> (3) Tidak ada usaha melawan gravitasi; tungkai jatuh langsung.</label>
+                <label><input type="radio" name="item_6a" value="4"> (4) Tidak ada gerakan.</label>
             </div>
             <div class="item">
                 <h3>6b. Motorik Tungkai Kanan</h3>
-                <label><input type="radio" name="item_6b" value="0" required> (0) Mampu mengangkat tungkai 30° minimal 5 detik</label>
-                <label><input type="radio" name="item_6b" value="1"> (1) Tungkai jatuh ketempat tidur pada detik ke 5 secara perlahan</label>
-                <label><input type="radio" name="item_6b" value="2"> (2) Tungkai jatuh sebelum 5 detik tapi ada usaha melawan gravitasi</label>
-                <label><input type="radio" name="item_6b" value="3"> (3) Tidak mampu melawan gravitasi</label>
-                <label><input type="radio" name="item_6b" value="4"> (4) Tidak ada gerakan</label>
+                 <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Posisikan tungkai: tahan pada sudut 30° (selalu diuji berbaring). *Drift* dinilai jika tungkai jatuh sebelum 5 detik. Uji setiap tungkai bergantian, dimulai dari yang tidak lumpuh.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_6b" value="0" required> (0) Tidak ada *drift*; tungkai bertahan 30° selama 5 detik.</label>
+                <label><input type="radio" name="item_6b" value="1"> (1) *Drift*; tungkai jatuh di akhir 5 detik tapi tidak menyentuh ranjang.</label>
+                <label><input type="radio" name="item_6b" value="2"> (2) Ada usaha melawan gravitasi; tungkai jatuh sebelum 5 detik tapi ada sedikit tahanan.</label>
+                <label><input type="radio" name="item_6b" value="3"> (3) Tidak ada usaha melawan gravitasi; tungkai jatuh langsung.</label>
+                <label><input type="radio" name="item_6b" value="4"> (4) Tidak ada gerakan.</label>
             </div>
 
             <div class="item">
                 <h3>7. Ataksia Tungkai</h3>
-                <p class="instruction">Gunakan tes unjuk jari-hidung (finger-nose test) dan tumit-lutut (heel-shin test).</p>
-                <label><input type="radio" name="item_7" value="0" required> (0) Tidak ada</label>
-                <label><input type="radio" name="item_7" value="1"> (1) Terdapat pada satu tungkai</label>
-                <label><input type="radio" name="item_7" value="2"> (2) Terdapat pada dua tungkai</label>
+                <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Item ini bertujuan mencari bukti lesi serebelum unilateral. Lakukan tes jari-hidung-jari dan tumit-lutut di kedua sisi. Ataksia dinilai hanya jika ada di luar proporsi kelemahan. Ataksia dianggap tidak ada pada pasien yang tidak bisa mengerti atau lumpuh.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_7" value="0" required> (0) Tidak ada.</label>
+                <label><input type="radio" name="item_7" value="1"> (1) Terdapat pada satu tungkai.</label>
+                <label><input type="radio" name="item_7" value="2"> (2) Terdapat pada dua tungkai.</label>
             </div>
 
             <div class="item">
                 <h3>8. Sensorik</h3>
-                <p class="instruction">Tes sensasi atau ringisan terhadap rangsang tusuk jarum (pinprick). Pasien koma (Skor 1a=3) otomatis mendapat skor 2.</p>
+                <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Tes sensasi atau ringisan terhadap rangsang tusuk jarum (pinprick). Hanya nilai kehilangan sensorik akibat stroke. Uji beberapa area tubuh (lengan [bukan tangan], tungkai, badan, wajah) untuk memeriksa hemisensori. Pasien stupor dan afasia kemungkinan akan mendapat skor 1 atau 0. Pasien koma (Skor 1a=3) otomatis mendapat skor 2.
+                    </p>
+                </details>
                 <label><input type="radio" name="item_8" value="0" required> (0) Normal; tidak ada gangguan sensorik.</label>
-                <label><input type="radio" name="item_8" value="1"> (1) Gangguan sensorik ringan-sedang; merasa tusukan kurang tajam/tumpul, namun sadar saat disentuh.</label>
-                <label><input type="radio" name="item_8" value="2"> (2) Gangguan sensorik berat; tidak sadar saat disentuh di wajah, lengan, atau tungkai.</label>
+                <label><input type="radio" name="item_8" value="1"> (1) Gangguan sensorik ringan-sedang; pasien merasa tusukan kurang tajam/tumpul, namun sadar saat disentuh.</label>
+                <label><input type="radio" name="item_8" value="2"> (2) Gangguan sensorik berat; pasien tidak sadar saat disentuh di wajah, lengan, atau tungkai.</label>
             </div>
+
             <div class="item">
                 <h3>9. Kemampuan Bahasa Terbaik (Afasia)</h3>
-                <p class="instruction">Anjurkan pasien untuk menjelaskan suatu gambar atau membaca tulisan. Jika pasien buta, minta untuk mendeskripsikan suatu benda yang dipegang.</p>
-                <label><input type="radio" name="item_9" value="0" required> (0) Normal, tidak ada afasia</label>
-                <label><input type="radio" name="item_9" value="1"> (1) Afasia ringan hingga sedang</label>
-                <label><input type="radio" name="item_9" value="2"> (2) Afasia berat</label>
-                <label><input type="radio" name="item_9" value="3"> (3) Bisu, afasia global</label>
+                <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Minta pasien untuk menjelaskan apa yang terjadi pada gambar di bawah, lalu minta pasien untuk menamai benda-benda pada gambar kedua. Jika ada gangguan visual, minta pasien mengidentifikasi objek di tangannya. Pasien koma (skor 1a=3) otomatis mendapat skor 3.
+                    </p>
+                    <div class="instruction-images">
+                        <img src="scene-image.png" alt="Gambar untuk dijelaskan pasien">
+                        <img src="naming-image.png" alt="Gambar benda untuk dinamai pasien">
+                    </div>
+                </details>
+                <label><input type="radio" name="item_9" value="0" required> (0) Tidak ada afasia; normal.</label>
+                <label><input type="radio" name="item_9" value="1"> (1) Afasia ringan-sedang; ada kehilangan kefasihan atau pemahaman, tapi tidak signifikan.</label>
+                <label><input type="radio" name="item_9" value="2"> (2) Afasia berat; komunikasi melalui ekspresi terfragmentasi, pendengar sangat perlu menebak.</label>
+                <label><input type="radio" name="item_9" value="3"> (3) Bisu, afasia global; tidak ada ucapan atau pemahaman auditori yang dapat digunakan.</label>
             </div>
 
             <div class="item">
                 <h3>10. Disartria (Bicara Pelo)</h3>
-                <label><input type="radio" name="item_10" value="0" required> (0) Artikulasi normal</label>
-                <label><input type="radio" name="item_10" value="1"> (1) Pelo ringan hingga sedang</label>
-                <label><input type="radio" name="item_10" value="2"> (2) Sangat pelo atau tidak dapat dimengerti</label>
+                 <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Minta pasien untuk membaca atau mengulang kata-kata dari daftar. Contoh kalimat yang bisa digunakan: <strong>"Ular melingkar-lingkar di pagar Pak Umar"</strong>. Jika pasien mengalami afasia berat, nilai kejernihan artikulasi dari ucapan spontan.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_10" value="0" required> (0) Normal.</label>
+                <label><input type="radio" name="item_10" value="1"> (1) Disartria ringan-sedang; pasien cadel pada beberapa kata, sulit dimengerti.</label>
+                <label><input type="radio" name="item_10" value="2"> (2) Disartria berat; bicara sangat cadel sehingga tidak dapat dipahami, atau bisu/anartria.</label>
             </div>
 
             <div class="item">
-                <h3>11. Inatensi (Pengabaian)</h3>
-                <label><input type="radio" name="item_11" value="0" required> (0) Tidak ada</label>
-                <label><input type="radio" name="item_11" value="1"> (1) Inatensi visual, taktil, auditori, atau spasial parsial</label>
-                <label><input type="radio" name="item_11" value="2"> (2) Inatensi berat atau pada lebih dari satu modalitas</label>
+                <h3>11. Ekstingsi dan Inatensi</h3>
+                <details>
+                    <summary>Lihat Petunjuk Pemeriksaan</summary>
+                    <p class="instruction">
+                        Informasi yang cukup untuk mengidentifikasi pengabaian dapat diperoleh selama tes sebelumnya. Jika pasien memiliki gangguan penglihatan berat yang mencegah stimulasi visual ganda, dan rangsangan kulit normal, skornya normal. Jika pasien afasia tetapi tampak memperhatikan kedua sisi, skornya normal.
+                    </p>
+                </details>
+                <label><input type="radio" name="item_11" value="0" required> (0) Tidak ada kelainan.</label>
+                <label><input type="radio" name="item_11" value="1"> (1) Inatensi visual, taktil, auditori, spasial, atau personal, atau ekstingsi.</label>
+                <label><input type="radio" name="item_11" value="2"> (2) Hemi-inatensi mendalam atau ekstingsi pada lebih dari satu modalitas.</label>
             </div>
 
             <button type="button" class="tombol-hitung" onclick="hitungNIHSS()">HITUNG TOTAL SKOR</button>
